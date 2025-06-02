@@ -1,5 +1,5 @@
 import tkinter as tk
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageFilter
 
 
 #region CONSTANTS
@@ -12,6 +12,12 @@ image_data = f'Format slike:\t{image.format}\nVelicina slike:\t{image.size}\nMod
 
 
 #region FUNCTIONS
+def load_image():
+    image = Image.open(r'./algebra_ucionica.jpg')
+    width = 800
+    height = 550
+    return image.resize((width, height))
+
 def flip_lr():
     global image, lbl_photo
     image = image.transpose(method=Image.Transpose.FLIP_LEFT_RIGHT)
@@ -26,9 +32,16 @@ def flip_tb():
     lbl_photo.image = lbl_photo_image
 
 def blur():
-    print('blur')
+    global lbl_photo
+
+    image = load_image()
+    image = image.filter(ImageFilter.GaussianBlur(radius=sc_blur_var.get()))
+    lbl_photo_image = ImageTk.PhotoImage(image=image)
+    lbl_photo.configure(image=lbl_photo_image)
+    lbl_photo.image = lbl_photo_image
 def set_blur_radius(value):
-    print(f'set_blur_radius {value}')
+    sc_blur_var.set(value=value)
+    blur()
 
 def contour():
     print('contour')
