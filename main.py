@@ -7,6 +7,7 @@ image = Image.open(r'./algebra_ucionica.jpg')
 width = 800
 height = 550
 image = image.resize((width, height))
+image_data = f'Format slike:\t{image.format}\nVelicina slike:\t{image.size}\nMod slike:\t{image.mode}'
 #endregion
 
 
@@ -45,7 +46,7 @@ root.title('Algebra - Py Photoshop')
 
 lbl_photo_image = ImageTk.PhotoImage(image=image)
 lbl_photo = tk.Label(root, text='FOTOGRAFIJA', image=lbl_photo_image)
-lbl_photo.grid(column=0, row=0, padx=10, pady=10, rowspan=10)
+lbl_photo.grid(column=0, row=0, padx=10, pady=10, rowspan=9)
 
 
 #region BUTTONS
@@ -86,6 +87,11 @@ btn_load.grid(column=1, row=0, padx=10, pady=10)
 btn_reset = tk.Button(f_action_buttons, text='Resetiraj', command=reset)
 btn_reset.grid(column=2, row=0, padx=10, pady=10)
 #endregion
+
+lbl_image_data_var = tk.StringVar(value=image_data)
+lbl_image_data = tk.Label(root, textvariable=lbl_image_data_var,
+                          justify=tk.LEFT)
+lbl_image_data.grid(column=1, row=8, padx=10, pady=(10, 0), sticky='WE')
 
 
 if __name__ == '__main__':
