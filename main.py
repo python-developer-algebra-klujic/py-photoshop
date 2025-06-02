@@ -13,9 +13,16 @@ image_data = f'Format slike:\t{image.format}\nVelicina slike:\t{image.size}\nMod
 
 #region FUNCTIONS
 def flip_lr():
-    print('flip_lr')
+    global image, lbl_photo
+    image = image.transpose(method=Image.Transpose.FLIP_LEFT_RIGHT)
+    lbl_photo_image = ImageTk.PhotoImage(image=image)
+    lbl_photo['image'] = lbl_photo_image
+
 def flip_tb():
-    print('flip_tb')
+    global image, lbl_photo
+    image = image.transpose(method=Image.Transpose.FLIP_TOP_BOTTOM)
+    lbl_photo_image = ImageTk.PhotoImage(image=image)
+    lbl_photo['image'] = lbl_photo_image
 
 def blur():
     print('blur')
