@@ -44,20 +44,42 @@ def set_blur_radius(value):
     blur()
 
 def contour():
-    print('contour')
+    global lbl_photo, image
+
+    image = image.filter(ImageFilter.CONTOUR)
+    lbl_photo_image = ImageTk.PhotoImage(image=image)
+    lbl_photo.configure(image=lbl_photo_image)
+    lbl_photo.image = lbl_photo_image
 
 def emboss():
-    print('emboss')
+    global lbl_photo, image
+
+    image = image.filter(ImageFilter.EMBOSS)
+    lbl_photo_image = ImageTk.PhotoImage(image=image)
+    lbl_photo.configure(image=lbl_photo_image)
+    lbl_photo.image = lbl_photo_image
 
 def edges():
-    print('edges')
+    global lbl_photo, image
+
+    image = image.filter(ImageFilter.FIND_EDGES)
+    lbl_photo_image = ImageTk.PhotoImage(image=image)
+    lbl_photo.configure(image=lbl_photo_image)
+    lbl_photo.image = lbl_photo_image
+
 
 def save():
-    print('save')
+    image.save(f'nova_slika.jpg', format='JPEG')
 def load():
     print('load')
 def reset():
-    print('reset')
+    global lbl_photo, image
+
+    image = load_image()
+
+    lbl_photo_image = ImageTk.PhotoImage(image=image)
+    lbl_photo.configure(image=lbl_photo_image)
+    lbl_photo.image = lbl_photo_image
 #endregion
 
 
