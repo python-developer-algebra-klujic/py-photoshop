@@ -86,7 +86,6 @@ def load():
     lbl_photo_image = ImageTk.PhotoImage(image=image)
     lbl_photo.configure(image=lbl_photo_image)
     lbl_photo.image = lbl_photo_image
-
 def reset():
     global lbl_photo, image
 
