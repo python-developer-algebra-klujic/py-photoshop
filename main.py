@@ -1,9 +1,11 @@
 import tkinter as tk
+from tkinter import filedialog
 from PIL import Image, ImageTk, ImageFilter
 
 
 #region CONSTANTS
-image = Image.open(r'./algebra_ucionica.jpg')
+image_path = r'./algebra_ucionica.jpg'
+image = Image.open(image_path)
 width = 800
 height = 550
 image = image.resize((width, height))
@@ -13,7 +15,7 @@ image_data = f'Format slike:\t{image.format}\nVelicina slike:\t{image.size}\nMod
 
 #region FUNCTIONS
 def load_image():
-    image = Image.open(r'./algebra_ucionica.jpg')
+    image = Image.open(image_path)
     width = 800
     height = 550
     return image.resize((width, height))
@@ -71,7 +73,20 @@ def edges():
 def save():
     image.save(f'nova_slika.jpg', format='JPEG')
 def load():
-    print('load')
+    global image_path, image
+
+    image_path = filedialog.askopenfilename()
+    image = Image.open(image_path)
+    width = 800
+    height = 550
+    image = image.resize((width, height))
+    image_data = f'Format slike:\t{image.format}\nVelicina slike:\t{image.size}\nMod slike:\t{image.mode}'
+    lbl_image_data_var.set(image_data)
+
+    lbl_photo_image = ImageTk.PhotoImage(image=image)
+    lbl_photo.configure(image=lbl_photo_image)
+    lbl_photo.image = lbl_photo_image
+
 def reset():
     global lbl_photo, image
 
